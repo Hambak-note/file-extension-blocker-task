@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>파일 확장자 차단</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        hr {
+            width: 40%;
+            border-width: 2px;
+            border-color: black;
+        }
+        .description {
+            font-size: 24px;
+        }
+        table{
+            font-size: 18px;
+
+        }
+        .fixed-extension-checkbox {
+            width: 20px;
+            height: 20px;
+        }
+        .custom-extension-input {
+            width: 400px;
+            font-size: 18px;
+            padding: 5px;
+        }
+        .custom-extension-add-button {
+            width: 50px;
+            height: 35px;
+        }
+        .custom-extension-list-input {
+            width: 600px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>◎ 파일 확장자 차단</h1>
+    <hr>
+    <p class="description">파일 확장자에 따라 특정 형식의 파일을 첨부하거나 복사하지 못하도록 제한</p>
+    <table>
+        <tr>
+            <td><p>고정 확장자</p></td>
+            <td>
+                <input type="checkbox" class="fixed-extension-checkbox">체크박스
+                <input type="checkbox" class="fixed-extension-checkbox">체크박스
+                <input type="checkbox" class="fixed-extension-checkbox">체크박스
+                <input type="checkbox" class="fixed-extension-checkbox">체크박스
+                <input type="checkbox" class="fixed-extension-checkbox">체크박스
+                <input type="checkbox" class="fixed-extension-checkbox">체크박스
+                <input type="checkbox" class="fixed-extension-checkbox">체크박스
+            </td>
+        </tr>
+        <tr>
+            <td><p>커스텀 확장자</p></td>
+            <td>
+                <input type="text" class="custom-extension-input">
+                <button class="custom-extension-add-button">+추가</button>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="text" class="custom-extension-list-input">
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
