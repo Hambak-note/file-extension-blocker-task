@@ -104,7 +104,6 @@ $(document).ready(function() {
             .then(result => {
                 if (result.message === "SUCCESS") {
 
-
                     const newSpanText = (currentValue + 1) + '/' + spanText.split('/')[1];
                     displayValueSpan.textContent = newSpanText;
 
@@ -113,8 +112,10 @@ $(document).ready(function() {
 
                     const customExtensionButtons = document.querySelector('.custom-extension-buttons');
                     customExtensionButtons.appendChild(newButton);
+                } else if (result.message === "DUPLICATE") {
+                    alert("확장자는 중복될 수 없습니다.");
                 } else {
-                    alert("추가 실패");
+                    alert("저장 중 오류 발생")
                 }
             })
             .catch(error => {
