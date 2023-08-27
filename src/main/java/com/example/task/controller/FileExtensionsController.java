@@ -87,7 +87,6 @@ public class FileExtensionsController {
     public Map<String, String> deleteExtension(@RequestBody FileExtensionDeleteDto fileExtensionDeleteDto) {
         try {
             fileExtensionService.delete(fileExtensionDeleteDto);
-            System.out.println("딜리트 수행");
 
             Map<String, String> response = new HashMap<>();
             response.put("message", "SUCCESS");
