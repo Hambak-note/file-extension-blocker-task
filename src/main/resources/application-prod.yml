@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/test
+    username: root
+    password:
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/schema.sql
+      data-locations: classpath:db/data.sql
+
+
+
+logging:
+  level:
+    org:
+      springframework:
+        jdbc: debug
+    com.example.task.repository: trace
+
+mybatis:
+  type-aliases-package: com.example.task.domain
+  configuration:
+    map-underscore-to-camel-case: true

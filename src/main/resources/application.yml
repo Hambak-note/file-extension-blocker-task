@@ -1,28 +1,6 @@
 spring:
   profiles:
-    active: local
-  datasource:
-    url: jdbc:h2:tcp://localhost/~/test
-    username: sa
-    password:
-  sql:
-    init:
-      mode: always
-      schema-locations: classpath:h2/schema.sql
-      data-locations: classpath:h2/data.sql
-
-logging:
-  level:
-    org:
-      springframework:
-        jdbc: debug
-    com.example.task.repository: trace
-
-mybatis:
-  type-aliases-package: com.example.task.domain
-  configuration:
-    map-underscore-to-camel-case: true
-
+    active: prod
 
 
 
