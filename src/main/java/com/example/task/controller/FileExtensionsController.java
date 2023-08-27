@@ -1,9 +1,6 @@
 package com.example.task.controller;
 
-import com.example.task.domain.Constant;
-import com.example.task.domain.FileExtension;
-import com.example.task.domain.FileExtensionDeleteDto;
-import com.example.task.domain.FileExtensionUpdateDto;
+import com.example.task.domain.*;
 import com.example.task.service.FileExtensionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -96,6 +93,31 @@ public class FileExtensionsController {
 
             Map<String, String> response = new HashMap<>();
             response.put("error", "파일 삭제 중 에러가 발생하였습니다.");
+
+            return response;
+        }
+    }
+
+    @PostMapping("/validation")
+    @ResponseBody
+    public Map<String, String> validationExtension(@RequestBody FileValidationDto fileValidationDto) {
+        try {
+
+            Map<String, String> response = new HashMap<>();
+            Optional<FileExtension> findExtensionName = fileExtensionService.findByExtensionName(fileValidationDto.getExtensionName());
+
+            if(findExtensionName.isPresent()) {
+                response.put("message", "RESTRICT");
+                return response;
+            }
+
+            response.put("message", "SUCCESS");
+
+            return response;
+        } catch (Exception e) {
+
+            Map<String, String> response = new HashMap<>();
+            response.put("error", "파일 확장자 검증 중 에러가 발생하였습니다.");
 
             return response;
         }

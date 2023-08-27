@@ -1,5 +1,44 @@
 $(document).ready(function() {
 
+    $('#uploadButton').on('click', function() {
+        const selectedFile = $('#fileUploadInput')[0].files[0];
+
+        if (selectedFile) {
+            const fileName = selectedFile.name;
+            const fileExtension = fileName.split('.').pop(); // 파일 이름에서 확장자 추출
+            console.log('업로드된 파일의 확장자: ' + fileExtension);
+
+            const data = {
+                extensionName: fileExtension
+            }
+
+            // 이제 서버로 파일 업로드 요청 및 처리
+            fetch('fileExtensions/validation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.message === "SUCCESS") {
+                        alert("해당 파일의 확장자는 사용 가능합니다.")
+                    } else if (result.message === 'RESTRICT') {
+                        alert('해당 파일의 확장자는 차단되었습니다.');
+                    } else {
+                        alert('확장자 검증 실패')
+                    }
+                })
+                .catch(error => {
+                    alert("에러 발생");
+                });
+
+        } else {
+            $('#uploadResult').text('파일을 선택해주세요.');
+        }
+    });
+
     $('.custom-extension-buttons').on('click', 'button', function() {
 
         const button = $(this);
