@@ -81,4 +81,20 @@ class FileExtensionRepositoryTest {
         Assertions.assertThat(fileExtensionUpdateDto.getChecked()).isEqualTo(convertedFindFileExtension.getChecked());
     }
 
+    @Test
+    @DisplayName("삭제 테스트")
+    void delete() {
+
+        FileExtension fileExtension = new FileExtension("test", "Y", "N");
+
+        fileExtensionRepository.save(fileExtension);
+        FileExtensionDeleteDto deleteDto = new FileExtensionDeleteDto("test");
+
+        fileExtensionRepository.delete(deleteDto);
+
+        Optional<FileExtension> findFileExtension = fileExtensionRepository.findByExtensionName(fileExtension.getExtensionName());
+
+        Assertions.assertThat(findFileExtension).isEmpty();
+    }
+
 }

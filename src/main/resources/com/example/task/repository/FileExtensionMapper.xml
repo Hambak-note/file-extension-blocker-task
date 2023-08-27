@@ -15,6 +15,12 @@
             AND extension_name = #{extensionName}
     </update>
 
+    <delete id="delete">
+        DELETE FROM file_extension_blocking
+        WHERE 1=1
+            AND extension_name = #{extensionName}
+    </delete>
+
     <select id="findFixedExtension" resultType="FileExtension">
         SELECT id, extension_name, fixed_extension, checked
         FROM file_extension_blocking
