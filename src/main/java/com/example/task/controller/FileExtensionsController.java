@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/fileExtensions")
@@ -57,9 +58,17 @@ public class FileExtensionsController {
     @ResponseBody
     public Map<String, String> saveExtension(@RequestBody FileExtension fileExtension) {
         try {
-            FileExtension savedFileExtension = fileExtensionService.save(fileExtension);
 
             Map<String, String> response = new HashMap<>();
+            Optional<FileExtension> findExtensionName = fileExtensionService.findByExtensionName(fileExtension.getExtensionName());
+
+            if(findExtensionName.isPresent()) {
+                response.put("message", "DUPLICATE");
+                return response;
+            }
+
+            FileExtension savedFileExtension = fileExtensionService.save(fileExtension);
+
             response.put("message", "SUCCESS");
             response.put("savedFileExtension", savedFileExtension.getExtensionName());
 
