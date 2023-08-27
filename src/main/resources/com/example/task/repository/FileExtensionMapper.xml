@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.task.repository.FileExtensionMapper">
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO file_extension_blocking(extension_name, fixed_extension, checked)
+        VALUES (#{extensionName}, #{fixedExtension}, #{checked})
+    </insert>
+
+    <update id="update">
+        UPDATE file_extension_blocking
+        SET checked = #fileExtensionParam{fileExtensionParam.checked}
+        WHERE 1=1
+            id = #{fileExtensionParam.id}
+    </update>
+
+    <select id="findAll" resultType="FileExtension">
+        SELECT id, extension_name, fixed_extension, checked
+        FROM file_extension_blocking
+    </select>
+
+    <select id="findByExtensionName" resultType="FileExtension">
+        SELECT id, extension_name, fixed_extension, checked
+        FROM file_extension_blocking
+        WHERE 1=1
+            AND extension_name = #{extensionName}
+    </select>
+
+</mapper>
