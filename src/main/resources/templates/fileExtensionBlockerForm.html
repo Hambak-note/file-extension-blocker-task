@@ -42,6 +42,53 @@
             height: 300px;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 체크 박스 요소들을 가져옵니다.
+            const checkBoxes = document.querySelectorAll('.fixed-extension-checkbox');
+
+            // 각 체크 박스에 대해 이벤트 리스너를 추가합니다.
+            checkBoxes.forEach(checkBox => {
+                checkBox.addEventListener('change', function() {
+                    const isChecked = this.checked; // 체크 여부를 가져옵니다.
+                    const extensionName = this.nextElementSibling.textContent;
+
+                    const checked = isChecked ? 'Y' : 'N';
+
+                    console.log(extensionName);
+                    console.log(isChecked);
+
+                    // TODO: 서버로 확장자의 ID와 체크 여부를 전달하여 처리하는 로직을 추가합니다.
+                    // 예: AJAX 요청을 통해 서버에 업데이트 요청을 보냅니다.
+                    // 서버로 보낼 데이터를 준비합니다.
+                    const data = {
+                        checked: checked,
+                        extensionName: extensionName
+                    };
+
+                    // AJAX 요청을 보냅니다.
+                    fetch('/fileExtensions/update', {
+                        method: 'POST', // 또는 'PUT' 등의 HTTP 메서드
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(response => response.json())
+                        .then(result => {
+                            if (result.message === "SUCCESS") {
+                            } else {
+                                alert("업데이트 실패");
+                            }
+                        })
+                        .catch(error => {
+                            alert("업데이트 실패 : " + error);
+                        });
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <h1>◎ 파일 확장자 차단</h1>

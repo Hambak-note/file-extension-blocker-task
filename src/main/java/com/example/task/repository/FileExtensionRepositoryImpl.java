@@ -20,8 +20,8 @@ public class FileExtensionRepositoryImpl implements FileExtensionRepository{
     }
 
     @Override
-    public void update(FileExtensionUpdateDto fileExtensionParam) {
-        fileExtensionMapper.update(fileExtensionParam);
+    public void update(FileExtensionUpdateDto fileExtensionUpdateDto) {
+        fileExtensionMapper.update(fileExtensionUpdateDto);
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface FileExtensionRepository {
 
     FileExtension save(FileExtension fileExtension);
-    void update(FileExtensionUpdateDto fileExtensionParam);
+    void update(FileExtensionUpdateDto fileExtensionUpdateDto);
     List<FileExtension> findFixedExtension();
     List<FileExtension> findNotFixedExtension();
     Optional<FileExtension> findByExtensionName(String extensionName);

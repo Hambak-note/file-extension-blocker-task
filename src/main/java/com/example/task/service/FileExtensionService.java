@@ -12,7 +12,7 @@ public interface FileExtensionService {
 
     FileExtension save(FileExtension fileExtension);
 
-    void update(FileExtensionUpdateDto fileExtensionParam);
+    void update(FileExtensionUpdateDto fileExtensionUpdateDto);
     Optional<FileExtension> findByExtensionName(String extensionName);
 
     List<FileExtension> findFixedExtension();

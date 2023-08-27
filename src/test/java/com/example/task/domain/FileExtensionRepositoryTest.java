@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Transactional
@@ -63,6 +64,21 @@ class FileExtensionRepositoryTest {
             Assertions.assertThat(saveFileExtension.getFixedExtension()).isEqualTo(findFileExtension.getFixedExtension());
         }
 
+    }
+
+    @Test
+    @DisplayName("업데이트 테스트")
+    void update() {
+
+        FileExtension fileExtension = new FileExtension("test", "Y", "N");
+        FileExtensionUpdateDto fileExtensionUpdateDto = new FileExtensionUpdateDto("test", "Y");
+
+        fileExtensionRepository.save(fileExtension);
+        fileExtensionRepository.update(fileExtensionUpdateDto);
+        Optional<FileExtension> findFileExtension = fileExtensionRepository.findByExtensionName(fileExtension.getExtensionName());
+
+        FileExtension convertedFindFileExtension = findFileExtension.orElse(null);
+        Assertions.assertThat(fileExtensionUpdateDto.getChecked()).isEqualTo(convertedFindFileExtension.getChecked());
     }
 
 }
