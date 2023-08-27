@@ -5,6 +5,7 @@
 
 - 과제 진행 과정에서 등록한 이슈들 : https://github.com/Hambak-note/file-extension-blocker-task/issues
 - 이슈들 수행 내역 : https://github.com/users/Hambak-note/projects/3
+- 접속 주소 : http://3.37.192.237:8080
 
 <br>
 
