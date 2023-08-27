@@ -15,6 +15,8 @@ public interface FileExtensionService {
     void update(FileExtensionUpdateDto fileExtensionParam);
     Optional<FileExtension> findByExtensionName(String extensionName);
 
-    List<FileExtension> findAll();
+    List<FileExtension> findFixedExtension();
+    List<FileExtension> findNotFixedExtension();
+
 
 }

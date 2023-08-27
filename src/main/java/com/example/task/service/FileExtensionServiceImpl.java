@@ -6,7 +6,9 @@ import com.example.task.repository.FileExtensionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -30,7 +32,13 @@ public class FileExtensionServiceImpl implements FileExtensionService{
     }
 
     @Override
-    public List<FileExtension> findAll() {
-        return fileExtensionRepository.findAll();
+    public List<FileExtension> findFixedExtension() {
+        return fileExtensionRepository.findFixedExtension();
     }
+
+    @Override
+    public List<FileExtension> findNotFixedExtension() {
+        return fileExtensionRepository.findNotFixedExtension();
+    }
+
 }

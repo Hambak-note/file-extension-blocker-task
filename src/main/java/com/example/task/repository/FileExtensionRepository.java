@@ -10,6 +10,7 @@ public interface FileExtensionRepository {
 
     FileExtension save(FileExtension fileExtension);
     void update(FileExtensionUpdateDto fileExtensionParam);
-    List<FileExtension> findAll();
+    List<FileExtension> findFixedExtension();
+    List<FileExtension> findNotFixedExtension();
     Optional<FileExtension> findByExtensionName(String extensionName);
 }

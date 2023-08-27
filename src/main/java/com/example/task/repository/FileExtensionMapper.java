@@ -10,10 +10,11 @@ import java.util.Optional;
 @Mapper
 public interface FileExtensionMapper {
 
-    FileExtension save(FileExtension fileExtension);
+    void save(FileExtension fileExtension);
 
     void update(FileExtensionUpdateDto fileExtensionParam);
-    List<FileExtension> findAll();
+    List<FileExtension> findFixedExtension();
+    List<FileExtension> findNotFixedExtension();
     Optional<FileExtension> findByExtensionName(String extensionName);
 
 }

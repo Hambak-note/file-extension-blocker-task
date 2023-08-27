@@ -5,14 +5,14 @@ import lombok.Data;
 @Data
 public class FileExtensionUpdateDto {
 
-    private Long id;
+    private String extensionName;
     private String checked;
 
     public FileExtensionUpdateDto() {
     }
 
-    public FileExtensionUpdateDto(Long id, String checked) {
-        this.id = id;
+    public FileExtensionUpdateDto(String extensionName, String checked) {
+        this.extensionName = extensionName;
         this.checked = checked;
     }
 }

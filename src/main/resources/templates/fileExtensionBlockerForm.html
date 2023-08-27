@@ -51,13 +51,10 @@
         <tr>
             <td><p>고정 확장자</p></td>
             <td>
-                <input type="checkbox" class="fixed-extension-checkbox">체크박스
-                <input type="checkbox" class="fixed-extension-checkbox">체크박스
-                <input type="checkbox" class="fixed-extension-checkbox">체크박스
-                <input type="checkbox" class="fixed-extension-checkbox">체크박스
-                <input type="checkbox" class="fixed-extension-checkbox">체크박스
-                <input type="checkbox" class="fixed-extension-checkbox">체크박스
-                <input type="checkbox" class="fixed-extension-checkbox">체크박스
+                <th:block th:each="extension : ${fixedExtensions}">
+                    <input type="checkbox" class="fixed-extension-checkbox" th:checked="${extension.checked == 'Y'}">
+                    <span th:text="${extension.extensionName}"></span>
+                </th:block>
             </td>
         </tr>
         <tr>
