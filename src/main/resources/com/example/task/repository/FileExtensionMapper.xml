@@ -10,9 +10,9 @@
 
     <update id="update">
         UPDATE file_extension_blocking
-        SET checked = #fileExtensionParam{fileExtensionParam.checked}
+        SET checked = #{checked}
         WHERE 1=1
-            AND extension_name = #{fileExtensionParam.extensionName}
+            AND extension_name = #{extensionName}
     </update>
 
     <select id="findFixedExtension" resultType="FileExtension">

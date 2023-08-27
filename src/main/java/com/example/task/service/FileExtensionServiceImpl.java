@@ -22,8 +22,8 @@ public class FileExtensionServiceImpl implements FileExtensionService{
     }
 
     @Override
-    public void update(FileExtensionUpdateDto fileExtensionParam) {
-        fileExtensionRepository.update(fileExtensionParam);
+    public void update(FileExtensionUpdateDto fileExtensionUpdateDto) {
+        fileExtensionRepository.update(fileExtensionUpdateDto);
     }
 
     @Override
