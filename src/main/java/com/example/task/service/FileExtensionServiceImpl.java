@@ -1,6 +1,7 @@
 package com.example.task.service;
 
 import com.example.task.domain.FileExtension;
+import com.example.task.domain.FileExtensionDeleteDto;
 import com.example.task.domain.FileExtensionUpdateDto;
 import com.example.task.repository.FileExtensionRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,11 @@ public class FileExtensionServiceImpl implements FileExtensionService{
     @Override
     public void update(FileExtensionUpdateDto fileExtensionUpdateDto) {
         fileExtensionRepository.update(fileExtensionUpdateDto);
+    }
+
+    @Override
+    public void delete(FileExtensionDeleteDto fileExtensionDeleteDto) {
+        fileExtensionRepository.delete(fileExtensionDeleteDto);
     }
 
     @Override

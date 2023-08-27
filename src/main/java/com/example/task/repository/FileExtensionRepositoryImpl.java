@@ -1,6 +1,7 @@
 package com.example.task.repository;
 
 import com.example.task.domain.FileExtension;
+import com.example.task.domain.FileExtensionDeleteDto;
 import com.example.task.domain.FileExtensionUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -22,6 +23,11 @@ public class FileExtensionRepositoryImpl implements FileExtensionRepository{
     @Override
     public void update(FileExtensionUpdateDto fileExtensionUpdateDto) {
         fileExtensionMapper.update(fileExtensionUpdateDto);
+    }
+
+    @Override
+    public void delete(FileExtensionDeleteDto fileExtensionDeleteDto) {
+        fileExtensionMapper.delete(fileExtensionDeleteDto);
     }
 
     @Override

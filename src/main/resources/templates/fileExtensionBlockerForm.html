@@ -3,118 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>파일 확장자 차단</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        hr {
-            width: 40%;
-            border-width: 2px;
-            border-color: black;
-        }
-        .description {
-            font-size: 24px;
-        }
-        table{
-            font-size: 18px;
-
-        }
-        .fixed-extension-checkbox {
-            width: 20px;
-            height: 20px;
-        }
-        .custom-extension-input {
-            width: 400px;
-            font-size: 18px;
-            padding: 5px;
-        }
-        .custom-extension-add-button {
-            width: 50px;
-            height: 35px;
-        }
-        .custom-extension-list-input {
-            width: 600px;
-            height: 300px;
-        }
-    </style>
+    <link type="text/css" th:href="@{/style.css}"  rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            const checkBoxes = document.querySelectorAll('.fixed-extension-checkbox');
-            checkBoxes.forEach(checkBox => {
-                checkBox.addEventListener('change', function() {
-                    const isChecked = this.checked; // 체크 여부를 가져옵니다.
-                    const extensionName = this.nextElementSibling.textContent;
+    <script type="text/javascript" th:src="@{/script.js}"></script>
 
-                    const checked = isChecked ? 'Y' : 'N';
 
-                    const data = {
-                        checked: checked,
-                        extensionName: extensionName
-                    };
-
-                    // AJAX 요청을 보냅니다.
-                    fetch('/fileExtensions/update', {
-                        method: 'POST', // 또는 'PUT' 등의 HTTP 메서드
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    })
-                        .then(response => response.json())
-                        .then(result => {
-                            if (result.message === "SUCCESS") {
-                            } else {
-                                alert("업데이트 실패");
-                            }
-                        })
-                        .catch(error => {
-                            alert("업데이트 실패 : " + error);
-                        });
-                });
-            });
-
-            const addButton = document.querySelector('.custom-extension-add-button');
-            addButton.addEventListener('click', function() {
-                const inputElement = document.querySelector('.custom-extension-input');
-                const customExtension = inputElement.value.trim(); // 입력된 커스텀 확장자 가져오기
-
-                if (customExtension.length > 20) {
-                    alert("커스텀 확장자는 최대 20자까지 입력 가능합니다.");
-                    return;
-                }
-
-                const data = {
-                    extensionName: customExtension,
-                    fixedExtension: 'N',
-                    checked: 'N'
-                };
-
-                fetch('/fileExtensions/save', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                })
-                    .then(response => response.json())
-                    .then(result => {
-                        if (result.message === "SUCCESS") {
-                        } else {
-                            alert("추가 실패");
-                        }
-                    })
-                    .catch(error => {
-                        alert("추가 실패 : " + error);
-                    });
-            });
-        });
-    </script>
 </head>
 <body>
     <h1>◎ 파일 확장자 차단</h1>
@@ -140,7 +33,28 @@
         <tr>
             <td></td>
             <td>
-                <input type="text" class="custom-extension-list-input">
+                <div class="custom-extension-list">
+
+                    <div class="flex-container">
+                        <div class="custom-extension-count">
+                            <span th:text="${notFixedExtensions.size()} + '/' + ${maxCustomExtension}" id="displayValue" style="color: gray;"></span>
+                        </div>
+                    </div>
+
+                    <div class="flex-container">
+                        <div class="custom-extension-buttons" th:if="${notFixedExtensions != null}">
+                            <div th:each="extension : ${notFixedExtensions}">
+                                <button th:text="${extension.extensionName} + ' X'"></button>
+                            </div>
+                        </div>
+                        <div th:unless="${notFixedExtensions != null}" class="custom-extension-buttons">
+
+                        </div>
+                    </div>
+
+
+                </div>
+
             </td>
         </tr>
     </table>
