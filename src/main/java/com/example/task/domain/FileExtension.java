@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 public class FileExtension {
 
-    private Long id;
     private String extensionName;
     private String fixedExtension;
     private String checked;
@@ -14,8 +13,7 @@ public class FileExtension {
     public FileExtension() {
     }
 
-    public FileExtension(Long id, String extensionName, String fixedExtension, String checked) {
-        this.id = id;
+    public FileExtension(String extensionName, String fixedExtension, String checked) {
         this.extensionName = extensionName;
         this.fixedExtension = fixedExtension;
         this.checked = checked;

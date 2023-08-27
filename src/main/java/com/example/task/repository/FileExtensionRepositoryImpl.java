@@ -25,9 +25,14 @@ public class FileExtensionRepositoryImpl implements FileExtensionRepository{
     }
 
     @Override
-    public List<FileExtension> findAll() {
-        return fileExtensionMapper.findAll();
+    public List<FileExtension> findFixedExtension() {
+        return fileExtensionMapper.findFixedExtension();
     }
+
+    @Override
+    public List<FileExtension> findNotFixedExtension() {
+        return fileExtensionMapper.findNotFixedExtension();
+    };
 
     @Override
     public Optional<FileExtension> findByExtensionName(String extensionName) {

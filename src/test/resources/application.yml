@@ -1,6 +1,11 @@
 spring:
   profiles:
     active: test
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:h2/schema.sql
+
 
 logging:
   level:
