@@ -45,10 +45,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            // 체크 박스 요소들을 가져옵니다.
             const checkBoxes = document.querySelectorAll('.fixed-extension-checkbox');
-
-            // 각 체크 박스에 대해 이벤트 리스너를 추가합니다.
             checkBoxes.forEach(checkBox => {
                 checkBox.addEventListener('change', function() {
                     const isChecked = this.checked; // 체크 여부를 가져옵니다.
@@ -56,12 +53,6 @@
 
                     const checked = isChecked ? 'Y' : 'N';
 
-                    console.log(extensionName);
-                    console.log(isChecked);
-
-                    // TODO: 서버로 확장자의 ID와 체크 여부를 전달하여 처리하는 로직을 추가합니다.
-                    // 예: AJAX 요청을 통해 서버에 업데이트 요청을 보냅니다.
-                    // 서버로 보낼 데이터를 준비합니다.
                     const data = {
                         checked: checked,
                         extensionName: extensionName
@@ -86,6 +77,41 @@
                             alert("업데이트 실패 : " + error);
                         });
                 });
+            });
+
+            const addButton = document.querySelector('.custom-extension-add-button');
+            addButton.addEventListener('click', function() {
+                const inputElement = document.querySelector('.custom-extension-input');
+                const customExtension = inputElement.value.trim(); // 입력된 커스텀 확장자 가져오기
+
+                if (customExtension.length > 20) {
+                    alert("커스텀 확장자는 최대 20자까지 입력 가능합니다.");
+                    return;
+                }
+
+                const data = {
+                    extensionName: customExtension,
+                    fixedExtension: 'N',
+                    checked: 'N'
+                };
+
+                fetch('/fileExtensions/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.message === "SUCCESS") {
+                        } else {
+                            alert("추가 실패");
+                        }
+                    })
+                    .catch(error => {
+                        alert("추가 실패 : " + error);
+                    });
             });
         });
     </script>

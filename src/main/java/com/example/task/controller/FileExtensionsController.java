@@ -52,4 +52,24 @@ public class FileExtensionsController {
         }
     }
 
+    @PostMapping("/save")
+    @ResponseBody
+    public Map<String, String> saveExtension(@RequestBody FileExtension fileExtension) {
+        try {
+            FileExtension savedFileExtension = fileExtensionService.save(fileExtension);
+
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "SUCCESS");
+            response.put("savedFileExtension", savedFileExtension.getExtensionName());
+
+            return response;
+        } catch (Exception e) {
+
+            Map<String, String> response = new HashMap<>();
+            response.put("error", "파일 처리 중 에러가 발생하였습니다.");
+
+            return response;
+        }
+    }
+
 }
